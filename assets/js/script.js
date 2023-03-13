@@ -19,6 +19,7 @@ $(function () {
     var currentDay = dayjs().format('dddd, MMMM DD [at] hh:mm:ss'); 
     $(timeDisplayEl).text(currentDay);
     currentHour = dayjs().format("H");
+    currentHour = Number(currentHour);
   }
   
   setInterval(displayDate);
@@ -73,12 +74,15 @@ $(function () {
 
 
   currentHour = dayjs().format("H");
+  //currentHour = Number(currentHour);
+
 
   for (i = 9; i<=17; i++) {
 
     var hourEl = $("#hour-" + i).attr("id");
 
     hourEl = hourEl.slice(5);
+    //hourEl = Number(hourEl);
 
 
     console.log(hourEl);
