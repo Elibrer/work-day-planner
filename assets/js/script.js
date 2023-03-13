@@ -1,69 +1,82 @@
-// Wrap all code that interacts with the DOM in a call to jQuery to ensure that
-// the code isn't run until the browser has finished rendering all the elements
-// in the html.
-
 var timeDisplayEl = $('#currentDay');
 var saveBtnEl = $('.saveBtn');
+var deleteBtnEl = $('.deleteBtn');
 
-
+var currentHour = 0;
+var currentMinute = 0;
 
 //Function which wraps all code interating with the DOM to only work on page load.
-$(function() {
-  setInterval(displayDate);
-
-
-
-
-
-});
-
-// Function to call the current date and time
-function displayDate() {
-  var currentDay = dayjs().format('dddd, MMMM DD [at] hh:mm:ss'); 
-  $(timeDisplayEl).text(currentDay);
-}
-
-function hello(){
-  console.log("hello");
-}
-
-
-function saveToLocal() {
-  var parentID = $(this).parent().attr('id');
-  console.log(parentID);
-
-  var textArea = $(parentID).children().val();
-  console.log(textArea);
-
-}
-
-
 
 $(function () {
 
+  //Pressing the tab button will only select the next text field and not the buttons.
 
-  $(".saveBtn").click(function ( event ) {
+  $("button").attr("tabindex", "-1");
+
+  // Function to call the current date and time
+
+  function displayDate() {
+    var currentDay = dayjs().format('dddd, MMMM DD [at] hh:mm:ss'); 
+    $(timeDisplayEl).text(currentDay);
+    currentHour = dayjs().format("H");
+  }
+  
+  setInterval(displayDate);
+
+  //Reloads page every hour to update the current time period
+
+  function refreshEveryHour() {
+    currentMinute = dayjs().format("mm");
+    if (currentMinute == 00) {
+      location.reload();
+    }
+  }
+  setInterval(refreshEveryHour, 60000);
+
+//For loop that gets all local storage elements and displays them in the right positions.
+
+  for (i = 9; i <= 17; i++) {
+    var storedTodos = localStorage.getItem("hour-" + i);
+    $("#hour-" + i).children().eq(1).text(storedTodos);
+  }
+
+//Save button function to save text input to local storage.
+
+  $(saveBtnEl).click(function (event) {
     event.preventDefault();
 
     var parentID = $(this).parent().attr('id');
-    var textAreaInput = $(event.target).parent().children().eq(1).val();
+    var textAreaInput = $(event.target).parent().children().eq(1).val() || "";
 
-    var hourlyToDo = {
-      hour: parentID.trim(),
-      toDo: textAreaInput.trim(),
-    }
-    console.log(hourlyToDo);
-    console.log(JSON.stringify(hourlyToDo));
+    localStorage.setItem(parentID, textAreaInput);
+    console.log("Saved into local storage as: " + textAreaInput);
+    
+  });
 
-    console.log(hourlyToDo.hour);
-    console.log(hourlyToDo.toDo);
+  //Delete button function to remove text and delete from local storage.
+
+  $(deleteBtnEl).click(function (event) {
+    event.preventDefault();
+
+    $(event.target).parent().children().eq(1).val("");
+    
+    var parentID = $(this).parent().attr('id');
+    var textAreaInput = $(event.target).parent().children().eq(1).val() || "";
+    localStorage.setItem(parentID, textAreaInput);
+    
+    localStorage.removeItem(parentID);
 
   });
 
 
+  console.log(currentHour);
 
+  for (i = 9; i<=17; i++) {
+    if ($("#hour-" + i) )
+    
 
-  //$(saveBtnEl).click(saveToLocal);
+  }
+
 
   // TODO: Add a listener for click events on the save button. This code should
   // use the id in the containing time-block as a key to save the user input in

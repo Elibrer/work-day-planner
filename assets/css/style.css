@@ -36,24 +36,34 @@ textarea {
 }
 
 .present {
-  background-color: #ff6961;
+  background-color: #4eeedb;
   color: white;
 }
 
 .future {
-  background-color: #77dd77;
+  background-color: #82acbd;
   color: white;
 }
 
 .saveBtn {
   border-left: 1px solid black;
+  background-color: #24cc43;
+  color: white;
+}
+.deleteBtn {
+  border-left: 1px solid black;
   border-top-right-radius: 15px;
   border-bottom-right-radius: 15px;
-  background-color: #06aed5;
+  background-color: rgb(240, 80, 80);
   color: white;
 }
 
 .saveBtn i:hover {
+  font-size: 20px;
+  transition: all 0.3s ease-in-out;
+}
+
+.deleteBtn i:hover {
   font-size: 20px;
   transition: all 0.3s ease-in-out;
 }
