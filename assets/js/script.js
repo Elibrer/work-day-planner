@@ -69,11 +69,30 @@ $(function () {
   });
 
 
-  console.log(currentHour);
+
+
+
+  currentHour = dayjs().format("H");
 
   for (i = 9; i<=17; i++) {
-    if ($("#hour-" + i) )
-    
+
+    var hourEl = $("#hour-" + i).attr("id");
+
+    hourEl = hourEl.slice(5);
+
+
+    console.log(hourEl);
+
+    console.log(currentHour);
+
+  
+    // if (hourEl > currentHour) {
+    //   $("#hour-" + i).attr("class", "future");
+    // } else if (hourEl < currentHour) {
+    //   $("#hour-" + i).attr("class", "past");
+    // } else {
+    //   $("#hour-" + i).attr("class", "present");
+    // }
 
   }
 
