@@ -1,7 +1,70 @@
 // Wrap all code that interacts with the DOM in a call to jQuery to ensure that
 // the code isn't run until the browser has finished rendering all the elements
 // in the html.
+
+var timeDisplayEl = $('#currentDay');
+var saveBtnEl = $('.saveBtn');
+
+
+
+//Function which wraps all code interating with the DOM to only work on page load.
+$(function() {
+  setInterval(displayDate);
+
+
+
+
+
+});
+
+// Function to call the current date and time
+function displayDate() {
+  var currentDay = dayjs().format('dddd, MMMM DD [at] hh:mm:ss'); 
+  $(timeDisplayEl).text(currentDay);
+}
+
+function hello(){
+  console.log("hello");
+}
+
+
+function saveToLocal() {
+  var parentID = $(this).parent().attr('id');
+  console.log(parentID);
+
+  var textArea = $(parentID).children().val();
+  console.log(textArea);
+
+}
+
+
+
 $(function () {
+
+
+  $(".saveBtn").click(function ( event ) {
+    event.preventDefault();
+
+    var parentID = $(this).parent().attr('id');
+    var textAreaInput = $(event.target).parent().children().eq(1).val();
+
+    var hourlyToDo = {
+      hour: parentID.trim(),
+      toDo: textAreaInput.trim(),
+    }
+    console.log(hourlyToDo);
+    console.log(JSON.stringify(hourlyToDo));
+
+    console.log(hourlyToDo.hour);
+    console.log(hourlyToDo.toDo);
+
+  });
+
+
+
+
+  //$(saveBtnEl).click(saveToLocal);
+
   // TODO: Add a listener for click events on the save button. This code should
   // use the id in the containing time-block as a key to save the user input in
   // local storage. HINT: What does `this` reference in the click listener
