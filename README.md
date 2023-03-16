@@ -2,9 +2,9 @@
 A simple and effective planner tool to help with sceduling tasks during a 9-5 work day.
 
 ![Languages Badge](https://img.shields.io/badge/Languages-3-blue)
-![JS Badge](https://img.shields.io/badge/JavaScript-57.4%25-yellow)
-![CSS Badge](https://img.shields.io/badge/CSS-27.7%25-blueviolet)
-![HTML Badge](https://img.shields.io/badge/HTML-14.9%25-red)
+![HTML Badge](https://img.shields.io/badge/HTML-59%25-red)
+![JS Badge](https://img.shields.io/badge/JavaScript-31.3%25-yellow)
+![CSS Badge](https://img.shields.io/badge/CSS-9.7%25-blueviolet)
 
 
 ## Deployment link
