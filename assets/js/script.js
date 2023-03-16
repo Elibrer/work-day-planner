@@ -22,10 +22,11 @@ $(function () {
   function displayDate() {
     var currentDay = dayjs().format('dddd, MMMM DD [at] hh:mm:ss'); 
     $(timeDisplayEl).text(currentDay);
+    currentHour = dayjs().format("H");
   }
   setInterval(displayDate);
 
-  //Reloads page every hour to update the current time period
+  //Checks the current hour every minute to reload page every hour. 
 
   function refreshEveryHour() {
     currentMinute = dayjs().format("mm");
@@ -48,7 +49,7 @@ $(function () {
     event.preventDefault();
 
     var parentID = $(this).parent().attr('id');
-    var textAreaInput = $(this).parent().children().eq(1).val();
+    var textAreaInput = $(this).parent().children().eq(1).val() || "";
 
     localStorage.setItem(parentID, textAreaInput);
     console.log("Saved into local storage as: " + textAreaInput);
@@ -74,7 +75,7 @@ $(function () {
   
   //EDIT THIS currentHour VAR FOR TESTING PURPOSES - for example if using this code outside of the 9-5 
   //office hours, set the variable to 14 for 2pm, etc.
-  
+
   //currentHour = 13;
 
   //For loop that updates the background colour of the text areas depending on time of day
