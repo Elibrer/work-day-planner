@@ -73,8 +73,9 @@ $(function () {
   currentHour = parseInt(currentHour);
   
   
-  //EDIT THIS currentHour VAR FOR TESTING PURPOSES - for example if using this code outside of the 9-5 
-  //office hours, set the variable to 14 for 2pm, etc.
+  /* EDIT THIS currentHour VAR *FOR TESTING PURPOSES* - eg. if using this 
+  code outside of the 9-5 office hours, set the variable to 14 for 2pm to 
+  update the 2pm time to '.current', etc. */
 
   //currentHour = 13;
 
